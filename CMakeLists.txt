@@ -4,7 +4,10 @@ project(NGit C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(NGit src/main.c)
+include_directories(include)
+
+file(GLOB SOURCES "src/*.c")
+add_executable(NGit main.c ${SOURCES})
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/bin/release")
 
