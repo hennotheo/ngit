@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <stdbool.h>
 
-#include "errors.h"
-#include "command_data.h"
+#include "ngit_errors.h"
+#include "tokens.h"
 
 // ngit [cmd] [arg_type] [arg]
 #define NGIT_COMMAND_TYPE_FEATURE "feature"
@@ -10,28 +9,17 @@
 
 int main(const int argc, const char **argv)
 {
-    struct ngit_cmd_data command = ngit_info_cmd_create(argc, argv);
-
-    if (!command.is_valid)
+    int tokenArray[NGIT_MAX_TOKENS] = {-1};
+    if (ngit_tokenize(argc, argv, tokenArray) == NGIT_FAILURE)
     {
-        switch (command.error_code)
-        {
-        case NGIT_ERROR_NO_COMMAND:
-            printf("Error: No command type provided\n");
-            break;
-        case NGIT_ERROR_NO_ARGS:
-            printf("Error: No arguments provided\n");
-            break;
-        case NGIT_ERROR_COMMAND_NOT_FOUND:
-            printf("Error: No command not found.\n");
-            break;
-        default:
-            printf("Error: Unknown error\n");
-            break;
-        }
+        printf("Error: Too many tokens\n");
         return 1;
     }
 
-    printf("Command work!\n");
+    for (int i = 0; i < argc; i++)
+    {
+        printf("Token %d: %d\n", i, tokenArray[i]);
+    }
+
     return 0;
 }
