@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(NGit C)
+
+set(CMAKE_C_STANDARD 99)
+
+add_executable(NGit src/main.c)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/bin/release")
+
+install(TARGETS NGit RUNTIME DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE})
