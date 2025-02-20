@@ -7,4 +7,6 @@ typedef enum
     NGIT_FAILURE = 1
 } NGitResults;
 
+int ngit_error(const NGitResults result);
+
 #endif

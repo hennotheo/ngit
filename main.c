@@ -4,18 +4,16 @@
 #include "tokens.h"
 
 // ngit [cmd] [arg_type] [arg]
-#define NGIT_COMMAND_TYPE_FEATURE "feature"
-#define NGIT_COMMAND_TYPE_FIX "fix"
 
 int main(const int argc, const char **argv)
 {
     int tokenArray[NGIT_MAX_TOKENS] = {-1};
-    if (ngit_tokenize(argc, argv, tokenArray) == NGIT_FAILURE)
-    {
-        printf("Error: Too many tokens\n");
-        return 1;
-    }
 
+    NGitResults result = ngit_tokenize(argc, argv, tokenArray);
+    if (result != NGIT_SUCCESS)
+        return ngit_error(result);
+
+    
     for (int i = 0; i < argc; i++)
     {
         printf("Token %d: %d\n", i, tokenArray[i]);

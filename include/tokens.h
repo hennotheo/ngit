@@ -7,6 +7,7 @@
 
 #define NGIT_TOKEN_USER_PARAM 0
 #define NGIT_TOKEN_COMMAND 1
+#define NGIT_TOKEN_OPTION 2
 
 NGitResults ngit_tokenize(const int argc, const char **argv, int* tokenArray);
 
